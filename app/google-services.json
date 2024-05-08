@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "281596627015",
+    "project_id": "hotelrooms-b4572",
+    "storage_bucket": "hotelrooms-b4572.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:281596627015:android:a03bc770bb926011a90962",
+        "android_client_info": {
+          "package_name": "com.example.hotelrooms"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBo5O64AAbk-sJo8dDpeaFWCtvuQcmtVIc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
