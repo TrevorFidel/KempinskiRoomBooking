@@ -7,6 +7,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.hotelrooms.ui.theme.screens.clients.AddClientScreen
+import com.example.hotelrooms.ui.theme.screens.clients.ViewClient
 //import com.example.hotelrooms.ui.theme.screens.clients.UpdateClientScreen
 import com.example.hotelrooms.ui.theme.screens.clients.ViewClientScreen
 import com.example.hotelrooms.ui.theme.screens.home.EntryScreen
@@ -39,6 +40,9 @@ fun AppNavHost(modifier: Modifier= Modifier,
         }
         composable(Route_view){
             ViewClientScreen(navController)
+        }
+        composable("$Route_view_client/{id}"){passedData ->
+            ViewClient(navController, passedData.arguments?.getString("id")!!)
         }
         composable(Route_Entry){
             EntryScreen(navController)

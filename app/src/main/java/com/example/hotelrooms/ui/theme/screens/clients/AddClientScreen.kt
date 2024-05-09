@@ -131,7 +131,6 @@ fun AddClientScreen(navController: NavController){
                 clientName.text.trim(), clientId.text.trim(),clientNo.text.trim(),clientdate.text.trim(),
                 clientRoom.text.trim()
             )
-           navController.navigate(Route_view)
 
         }, colors = ButtonDefaults.buttonColors(Color.Blue)) {
             Text(text = "Submit")

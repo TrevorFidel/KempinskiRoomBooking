@@ -8,6 +8,7 @@ import androidx.compose.runtime.snapshots.SnapshotStateList
 import androidx.navigation.NavController
 import com.example.hotelrooms.models.Client
 import com.example.hotelrooms.navigation.Route_login
+import com.example.hotelrooms.navigation.Route_view_client
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
@@ -29,15 +30,15 @@ class ClientViewModel(var navController: NavController, var context: Context) {
 
 
     fun saveClient(clientName: String, clientId: String, clientNo: String, clientDate:String,clientRoom:String) {
-        var id = System.currentTimeMillis().toString()
-        var clientData = Client(clientName, clientId, clientNo, clientDate, clientRoom, id)
-        var clientRef = FirebaseDatabase.getInstance().getReference()
-            .child("Client/$id")
+        val id = System.currentTimeMillis().toString()
+        val clientData = Client(clientName, clientId, clientNo, clientDate, clientRoom, id)
+        val clientRef = FirebaseDatabase.getInstance().getReference().child("Client/$id")
         progress.show()
         clientRef.setValue(clientData).addOnCompleteListener {
             progress.dismiss()
             if (it.isSuccessful) {
                 Toast.makeText(context, "Saving successful", Toast.LENGTH_SHORT).show()
+                navController.navigate("$Route_view_client/$id")
             } else {
                 Toast.makeText(context, "ERROR: ${it.exception!!.message}", Toast.LENGTH_SHORT)
                     .show()

@@ -19,15 +19,15 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 
 @Composable
-fun viewClient(navController: NavHostController, id: String){
-    var context = LocalContext.current
-    var name by remember {
+fun ViewClient(navController: NavHostController, id: String){
+    val context = LocalContext.current
+    val name by remember {
         mutableStateOf("")
     }
-    var idnumber by remember {
+    val idnumber by remember {
         mutableStateOf("")
     }
-    var tell by remember {
+    val tell by remember {
         mutableStateOf("")
     }
     var clientName by remember {
@@ -40,7 +40,7 @@ fun viewClient(navController: NavHostController, id: String){
         mutableStateOf(TextFieldValue(tell))
     }
 
-    var currentDataRef = FirebaseDatabase.getInstance().getReference().child("Client/$id")
+    val currentDataRef = FirebaseDatabase.getInstance().getReference().child("Client/$id")
     currentDataRef.addValueEventListener(object: ValueEventListener {
         override fun onDataChange(snapshot: DataSnapshot) {
             var client = snapshot.getValue(Client::class.java)

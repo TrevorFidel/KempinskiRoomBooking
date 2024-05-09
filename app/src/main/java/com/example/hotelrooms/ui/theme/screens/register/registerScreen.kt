@@ -108,7 +108,6 @@ fun RegisterScreen(navController: NavController){
             Button(onClick = {
                 val myregister= AuthViewModel(navController,context)
                 myregister.signup(name.text.trim(),email.text.trim(),pass.text.trim(),confpass.text.trim())
-                navController.navigate(Route_home)
             }, modifier = Modifier
                 .fillMaxWidth()
                 .padding(20.dp), colors = ButtonDefaults.buttonColors(Color.Cyan)) {
