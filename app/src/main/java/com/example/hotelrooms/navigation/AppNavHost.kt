@@ -17,6 +17,10 @@ import com.example.hotelrooms.ui.theme.screens.home.EntryScreen
 import com.example.hotelrooms.ui.theme.screens.home.HomeScreen
 import com.example.hotelrooms.ui.theme.screens.login.LoginScreen
 import com.example.hotelrooms.ui.theme.screens.register.RegisterScreen
+import com.example.hotelrooms.ui.theme.screens.rooms.AddRoomsScreen
+import com.example.hotelrooms.ui.theme.screens.rooms.UpdateRoomScreen
+import com.example.hotelrooms.ui.theme.screens.rooms.ViewRoomsScreen
+import com.example.hotelrooms.ui.theme.screens.rooms.ViewRoomsUser
 
 @Composable
 fun AppNavHost(modifier: Modifier= Modifier,
@@ -46,6 +50,18 @@ fun AppNavHost(modifier: Modifier= Modifier,
         }
         composable(Route_Entry){
             EntryScreen(navController)
+        }
+        composable(Route_add_rooms) {
+            AddRoomsScreen(navController)
+        }
+        composable(Route_view_rooms) {
+            ViewRoomsScreen(navController)
+        }
+        composable("$Route_update_rooms/{roomId}") {passedData->
+            UpdateRoomScreen(navController, passedData.arguments?.getString("roomId")!!)
+        }
+        composable(Route_View_Rooms_User){
+            ViewRoomsUser(navController)
         }
 
     }

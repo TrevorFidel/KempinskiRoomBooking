@@ -103,19 +103,40 @@ fun ClientItem(
     clientRepository: ClientViewModel
 ) {
     Card(modifier = Modifier
-        .height(300.dp)
-        .width(300.dp)
+        .height(450.dp)
+        .width(350.dp)
         .padding(10.dp),
         shape = CardDefaults.shape,
         elevation = CardDefaults.cardElevation()){
         Column(modifier = Modifier
             .fillMaxWidth()
             .padding(20.dp)) {
-            Text(text = name)
-            Text(text = Idnumber)
-            Text(text = tell)
-            Text(text = date)
-            Text(text = room)
+            OutlinedTextField(
+                value =name,
+                onValueChange = { },
+                label = {Text(text = "Client Name")}
+            )
+            OutlinedTextField(
+                value =Idnumber,
+                onValueChange = { },
+                label = {Text(text = "Client Idnumber ")}
+            )
+            OutlinedTextField(
+                value = tell,
+                onValueChange = { },
+                label = {Text(text = "Client tell")}
+            )
+            OutlinedTextField(
+                value = date,
+                onValueChange = { },
+                label = {Text(text = "Client date")}
+            )
+            OutlinedTextField(
+                value = room,
+                onValueChange = { },
+                label = {Text(text = "ClientRoom")}
+            )
+
             Row {
                 Button(onClick = {
                     clientRepository.deleteClient(id)

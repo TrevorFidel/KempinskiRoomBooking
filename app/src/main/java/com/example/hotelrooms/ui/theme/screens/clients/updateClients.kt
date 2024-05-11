@@ -63,20 +63,20 @@ fun UpdateClientScreen(navController:NavController,id:String) {
         var room by remember { mutableStateOf("") }
 
         var currentDataRef = FirebaseDatabase.getInstance().getReference().child("Client/$id")
-            currentDataRef.addValueEventListener(object: ValueEventListener{
-                override fun onDataChange(snapshot: DataSnapshot) {
-                    var client = snapshot.getValue(Client::class.java)
-                    name = client!!.name
-                    idnumber = client.idnumber
-                    tell = client.tell
-                    date = client.date
-                    room = client.room
-                }
+        currentDataRef.addValueEventListener(object: ValueEventListener{
+            override fun onDataChange(snapshot: DataSnapshot) {
+                var client = snapshot.getValue(Client::class.java)
+                name = client!!.name
+                idnumber = client.idnumber
+                tell = client.tell
+                date = client.date
+                room = client.room
+            }
 
-                override fun onCancelled(error: DatabaseError) {
-                    Toast.makeText(context,error.message,Toast.LENGTH_SHORT).show()
-                }
-            } )
+            override fun onCancelled(error: DatabaseError) {
+                Toast.makeText(context,error.message,Toast.LENGTH_SHORT).show()
+            }
+        } )
         Text(
             text = "Add product",
             fontSize = 30.sp,

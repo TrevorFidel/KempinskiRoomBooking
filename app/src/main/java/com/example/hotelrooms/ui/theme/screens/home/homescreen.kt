@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
@@ -27,6 +28,8 @@ import androidx.compose.material3.BottomAppBarDefaults
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
+import androidx.compose.material3.DropdownMenu
+import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.FloatingActionButtonDefaults
@@ -38,6 +41,10 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
@@ -51,14 +58,18 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.example.hotelrooms.R
+import com.example.hotelrooms.navigation.Route_View_Rooms_User
+import com.example.hotelrooms.navigation.Route_add_rooms
 import com.example.hotelrooms.navigation.Route_book
+import com.example.hotelrooms.navigation.Route_view
+import com.example.hotelrooms.navigation.Route_view_rooms
 
 
 @Composable
 fun HomeScreen(navController: NavController){
     Column {
-        TopBar()
-        RoomsList(roomsList,navController)
+        TopBar(navController)
+        ContentScreen(navController = navController)
         BottomAppBarWork()
     }
 }
@@ -119,9 +130,12 @@ fun BottomAppBarWork() {
 }
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun TopBar(){
+fun TopBar(navController: NavController ){
 
     val context = LocalContext.current.applicationContext
+    var expanded by remember {
+        mutableStateOf(false)
+    }
     TopAppBar(title = {Text(text = "Kempiski", fontFamily = FontFamily.Cursive, fontSize = 50.sp,
         fontWeight = FontWeight.Bold)},
         navigationIcon ={
@@ -142,183 +156,68 @@ fun TopBar(){
 //            IconButton(onClick = {Toast.makeText(context,"You can share using",Toast.LENGTH_SHORT).show()}) {
 //                Icon(imageVector = Icons.Filled.Share, contentDescription = "Share")
 //            }
-            IconButton(onClick = {Toast.makeText(context,"Choose from the given options",Toast.LENGTH_SHORT).show()}) {
-                Icon(imageVector = Icons.Filled.Menu, contentDescription = "menu")
-            }
-        }
-
-    )
-
-}
-data class Rooms(val name: String,val image: Int,val price: String,val button:String)
-private val roomsList= listOf(
-    Rooms("Acacia ", R.drawable.acacia,"2500","Book"),
-    Rooms("Bamboo ",R.drawable.bamboo,"3000","Book"),
-    Rooms("Hilton ",R.drawable.hilton,"3500","Book"),
-    Rooms("Acampo ",R.drawable.accacia2,"3000","Book"),
-    Rooms("kempiski",R.drawable.kempinski,"3500","Book"),
-    Rooms("Massai",R.drawable.masaimara,"4500","Book"),
-    Rooms("Panari",R.drawable.panari,"5000","Book"),
-    Rooms("Farisi",R.drawable.panari2,"4000","Book"),
-    Rooms("Parkinn ",R.drawable.parkinn,"4500","Book"),
-    Rooms("Sarova ",R.drawable.sarova,"4500","Book"),
-    Rooms("Eka ",R.drawable.sarova2,"5000","Book"),
-    )
-@Composable
-fun RoomsList(roomsList: List<Rooms>,navController: NavController) {
-    LazyColumn(
-        verticalArrangement = Arrangement.spacedBy(4.dp),
-        contentPadding = PaddingValues(horizontal = 16.dp, vertical = 18.dp),
-        modifier = Modifier.background(Color.White)
-    ) {
-        items(roomsList) { rooms ->
-            ListAppear( model = rooms,navController)
-        }
-    }
-}
-@Composable
-fun ListAppear(model:Rooms,navController: NavController){
-    Card(shape = MaterialTheme.shapes.medium ,
-        modifier = Modifier
-            .size(400.dp, 400.dp)
-            .padding(10.dp),
-    ) {
-        Column(modifier = Modifier.clickable {}) {
-            Image(painter = painterResource(id = model.image ),
-                contentDescription = model.name,
-                contentScale = ContentScale.Crop,
-                modifier = Modifier
-                    .size(400.dp, 300.dp)
-                    //.padding(5.dp)
-                    .background(Color.Cyan)
-            )
-            Row {
-                Text(text = model.name,
-                    fontSize = 24.sp,
-                    fontWeight = FontWeight.SemiBold,
-                    color = Color.Black)
-                Spacer(modifier = Modifier.width(100.dp))
-
-                Button(onClick = {navController.navigate(Route_book)},
-                    colors = ButtonDefaults.buttonColors(Color.Blue)){
-                    Text(text = model.button, fontSize = 15.sp
-                    )
-                }
-
-            }
-            Text(text = model.price,
-                fontSize = 24.sp,
-                fontWeight = FontWeight.SemiBold,
-                color = Color.Black
+            IconButton(
+                onClick = { expanded = true }
+            ) {
+                Icon(
+                    imageVector = Icons.Filled.Menu,
+                    contentDescription = "menu",
+                    tint = Color.Black
                 )
+            }
+            DropdownMenu(
+                expanded = expanded,
+                onDismissRequest = { expanded = false }
+            ) {
+                DropdownMenuItem(
+                    text = { Text(text = "View Clients") },
+                    onClick = {
+                        Toast.makeText(context, "Loading...", Toast.LENGTH_LONG).show()
+                        navController.navigate(Route_view)
+                    }
+                )
+                DropdownMenuItem(
+                    text = { Text(text = "Add Room") },
+                    onClick = {
+                        Toast.makeText(context, "Loading...", Toast.LENGTH_LONG).show()
+                        navController.navigate(Route_add_rooms)
+                    }
+                )
+                DropdownMenuItem(
+                    text = { Text(text = "View Rooms") },
+                    onClick = {
+                        Toast.makeText(context, "Loading...", Toast.LENGTH_LONG).show()
+                        navController.navigate(Route_view_rooms)
+                    }
+                )
+                // Add more DropdownMenuItem for other account options
+            }
+        }
+
+    )
+
+}
+
+@Composable
+fun ContentScreen(navController: NavController){
+    Column {
+        Button(
+            onClick = { navController.navigate(Route_add_rooms) },
+            modifier = Modifier.fillMaxWidth()
+        ) {
+            Text(text = "Add Room")
+        }
+        Button(
+            onClick = { navController.navigate(Route_View_Rooms_User) },
+            modifier = Modifier.fillMaxWidth()
+        ) {
+            Text(text = "View Rooms")
+        }
+        Button(
+            onClick = { navController.navigate(Route_view) },
+            modifier = Modifier.fillMaxWidth()
+        ) {
+            Text(text = "View Bookings ")
         }
     }
 }
-//@OptIn(ExperimentalMaterial3Api::class)
-//@Composable
-//fun DeliveryScreen(navController: NavHostController, userid: String) {
-//    var context = LocalContext.current
-//    var locationOptions = listOf(
-//        "Westlands",
-//        "Ruaka",
-//        "Thika",
-//        "Lavington",
-//        "Kileleshwa"
-//    )
-//    var isLocationExpanded by remember {
-//        mutableStateOf(false)
-//    }
-//    var location by remember {
-//        mutableStateOf(locationOptions[0])
-//    }
-//
-//    var mUserid by remember {
-//        mutableStateOf(userid)
-//    }
-//
-//
-//    Column {
-//        TextField(value = mUserid,
-//            onValueChange = {}
-//        )
-//        Row(
-//            modifier = Modifier
-//                .padding(
-//                    start = 10.dp,
-//                    end = 10.dp,
-//                    top = 0.dp,
-//                    bottom = 0.dp
-//                )
-//                .border(width = Dp.Hairline, color = Color.White)
-//        ) {
-//            Text(
-//                text = "Location:",
-//                modifier = Modifier
-//                    .align(Alignment.CenterVertically),
-//                color = Color.White
-//            )
-//            ExposedDropdownMenuBox(
-//                expanded = isLocationExpanded,
-//                onExpandedChange = { isLocationExpanded = !isLocationExpanded }
-//            ) {
-//                TextField(
-//                    modifier = Modifier
-//                        .menuAnchor()
-//                        .fillMaxWidth()
-//                        .padding(
-//                            start = 10.dp,
-//                            end = 10.dp,
-//                            top = 0.dp,
-//                            bottom = 0.dp
-//                        ),
-//                    value = location,
-//                    onValueChange = {},
-//                    readOnly = true,
-//                    trailingIcon = { ExposedDropdownMenuDefaults.TrailingIcon(expanded = isLocationExpanded) },
-//                    colors = TextFieldDefaults.colors(
-//                        focusedTextColor = Color.Magenta,
-//                        unfocusedTextColor = Color.Red,
-//                        focusedContainerColor = Color.Cyan,
-//                        unfocusedContainerColor = Color.Green,
-//                        disabledContainerColor = Color.White,
-//                        focusedLabelColor = Color.Green,
-//                        unfocusedLabelColor = Color.Magenta
-//                    ),
-//                )
-//                ExposedDropdownMenu(
-//                    expanded = isLocationExpanded,
-//                    onDismissRequest = { isLocationExpanded = false }) {
-//                    locationOptions.forEachIndexed { index, text ->
-//                        DropdownMenuItem(
-//                            text = { Text(text = text) },
-//                            onClick = { location = locationOptions[index] },
-//                            contentPadding = ExposedDropdownMenuDefaults.ItemContentPadding
-//                        )
-//                    }
-//                }
-//
-//            }
-//        }
-//        Text(text = "Currently Selected: $location")
-////
-////        Button(onClick = {
-////            var myDelivery = ProductViewModel(navController, context)
-////            myDelivery.makeDelivery(
-////                userid,
-////                location
-////            )
-////        },
-////            modifier = Modifier.fillMaxWidth()
-////        ) {
-////            Text(text = "Submit")
-////        }
-//    }
-//}
-//
-//
-//
-
-
-
-
-
