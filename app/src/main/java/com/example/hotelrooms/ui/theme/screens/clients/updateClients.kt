@@ -150,10 +150,9 @@ fun UpdateClientScreen(navController:NavController,id:String) {
 
     }
 }
-
-    @Preview
-    @Composable
-    fun UpdateClientScreen() {
-        UpdateClientScreen(rememberNavController(), id = "")
-    }
+@Preview
+@Composable
+fun UpdateClientScreenPreview() {
+    UpdateClientScreen(navController = rememberNavController(), id = "")
+}
 

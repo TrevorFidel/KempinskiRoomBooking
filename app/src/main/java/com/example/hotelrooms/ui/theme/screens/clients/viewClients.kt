@@ -42,8 +42,7 @@ import com.example.hotelrooms.navigation.Route_update
 @Composable
 fun ViewClientScreen(navController: NavHostController) {
     Column(modifier = Modifier
-        .fillMaxSize()
-        .background(Color.Cyan),
+        .fillMaxSize(),
         horizontalAlignment = Alignment.CenterHorizontally) {
 
         val context = LocalContext.current
@@ -58,7 +57,7 @@ fun ViewClientScreen(navController: NavHostController) {
                 .fillMaxSize(),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            Text(text = "All Clients",
+            Text(text = "All Bookings",
                 fontSize = 40.sp,
                 fontFamily = FontFamily.Cursive,
                 color = Color.Black)
@@ -145,7 +144,7 @@ fun ClientItem(
                 }
                 Spacer(modifier = Modifier.width(10.dp))
                 Button(onClick = {
-                    navController.navigate(Route_update +"/$id")
+                    navController.navigate("Route_update/$id")
                 }) {
                     Text(text = "Update", color = Color.Green)
                 }

@@ -132,6 +132,7 @@ fun RoomItemUser(
             ) {
                 Text(text = "Delete")
             }
+                Spacer(modifier = Modifier.width(20.dp))
             Button(onClick = {
                 navController.navigate("$Route_update_rooms/$roomId")
             }) {

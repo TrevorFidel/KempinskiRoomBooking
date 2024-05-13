@@ -80,7 +80,6 @@ fun AddClientScreen(navController: NavController){
        Card(modifier = Modifier
            .size(400.dp, 650.dp)
            .padding(10.dp),
-
            elevation = CardDefaults.cardElevation(), shape = CardDefaults.shape) {
            var context = LocalContext.current
            Text(
@@ -134,7 +133,7 @@ fun AddClientScreen(navController: NavController){
            OutlinedTextField(
                value = clientdate,
                onValueChange = { clientdate = it },
-               label = { Text(text = " Day's to spend*", fontWeight = FontWeight.Bold) },
+               label = { Text(text = " Day of reservation*", fontWeight = FontWeight.Bold) },
                keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Text),
                modifier = Modifier.padding(8.dp),
                readOnly = true,
@@ -165,7 +164,7 @@ fun AddClientScreen(navController: NavController){
            OutlinedTextField(
                value = clientRoom,
                onValueChange = { clientRoom = it },
-               label = { Text(text = "Room type *", fontWeight = FontWeight.Bold) },
+               label = { Text(text = "Room name*", fontWeight = FontWeight.Bold) },
                keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Text),
                modifier = Modifier.padding(8.dp)
            )
@@ -194,110 +193,10 @@ fun AddClientScreen(navController: NavController){
 
 
     }
-    //@Preview(showBackground = true, showSystemUi = true)
+   // @Preview(showBackground = true, showSystemUi = true)
     @Composable
     fun AddScreenPreview(){
         AddClientScreen(rememberNavController())
 
     }
 }
-//@OptIn(ExperimentalMaterial3Api::class)
-//@Composable
-//fun DeliveryScreen(navController: NavController,userid: String) {
-//    var context = LocalContext.current
-//    var locationOptions = listOf(
-//        "Westlands",
-//        "Ruaka",
-//        "Thika",
-//        "Lavington",
-//        "Kileleshwa"
-//    )
-//    var isLocationExpanded by remember {
-//        mutableStateOf(false)
-//    }
-//    var location by remember {
-//        mutableStateOf(locationOptions[0])
-//    }
-//
-//    var mUserid by remember {
-//        mutableStateOf(userid)
-//    }
-//
-//
-//    Column {
-//        TextField(value = mUserid,
-//            onValueChange = {}
-//        )
-//        Row(
-//            modifier = Modifier
-//                .padding(
-//                    start = 10.dp,
-//                    end = 10.dp,
-//                    top = 0.dp,
-//                    bottom = 0.dp
-//                )
-//                .border(width = 10.dp, color = Color.White)
-//        ) {
-//            Text(
-//                text = "Location:",
-//                modifier = Modifier
-//                    .align(Alignment.CenterVertically),
-//                color = Color.White
-//            )
-//            ExposedDropdownMenuBox(
-//                expanded = isLocationExpanded,
-//                onExpandedChange = { isLocationExpanded = !isLocationExpanded }
-//            ) {
-//                TextField(
-//                    modifier = Modifier
-//                        .menuAnchor()
-//                        .fillMaxWidth()
-//                        .padding(
-//                            start = 10.dp,
-//                            end = 10.dp,
-//                            top = 0.dp,
-//                            bottom = 0.dp
-//                        ),
-//                    value = location,
-//                    onValueChange = {},
-//                    readOnly = true,
-//                    trailingIcon = { ExposedDropdownMenuDefaults.TrailingIcon(expanded = isLocationExpanded) },
-//                    colors = TextFieldDefaults.colors(
-//                        focusedTextColor = Color.Magenta,
-//                        unfocusedTextColor = Color.Red,
-//                        focusedContainerColor = Color.Cyan,
-//                        unfocusedContainerColor = Color.Green,
-//                        disabledContainerColor = Color.White,
-//                        focusedLabelColor = Color.Green,
-//                        unfocusedLabelColor = Color.Magenta
-//                    ),
-//                )
-//                ExposedDropdownMenu(
-//                    expanded = isLocationExpanded,
-//                    onDismissRequest = { isLocationExpanded = false }) {
-//                    locationOptions.forEachIndexed { index, text ->
-//                        DropdownMenuItem(
-//                            text = { Text(text = text) },
-//                            onClick = { location = locationOptions[index] },
-//                            contentPadding = ExposedDropdownMenuDefaults.ItemContentPadding
-//                        )
-//                    }
-//                }
-//
-//            }
-//        }
-//        Text(text = "Currently Selected: $location")
-//
-//        Button(onClick = {
-//            var myDelivery = (navController, context)
-//            myDelivery.makeDelivery(
-//                userid,
-//                location
-//            )
-//        },
-//            modifier = Modifier.fillMaxWidth()
-//        ) {
-//           Text(text = "Submit")
-//       }
-//    }
-//}}

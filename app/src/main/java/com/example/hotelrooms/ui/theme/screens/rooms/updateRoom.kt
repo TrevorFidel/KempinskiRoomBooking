@@ -110,7 +110,7 @@ fun UpdateRoomScreen(navController: NavHostController, roomId: String){
         OutlinedTextField(
             value = mRoomName,
             onValueChange = { mRoomName = it },
-            label = { Text(text = "Book Title *") },
+            label = { Text(text = "Room Name *") },
             colors = TextFieldDefaults.colors(
                 focusedTextColor = Color.Blue,
                 unfocusedTextColor = Color.Cyan,
@@ -133,7 +133,7 @@ fun UpdateRoomScreen(navController: NavHostController, roomId: String){
         OutlinedTextField(
             value = mRoomType,
             onValueChange = { mRoomType = it },
-            label = { Text(text = "Book Author *") },
+            label = { Text(text = "Room Type *") },
             colors = TextFieldDefaults.colors(
                 focusedTextColor = Color.Blue,
                 unfocusedTextColor = Color.Cyan,
@@ -156,7 +156,7 @@ fun UpdateRoomScreen(navController: NavHostController, roomId: String){
         OutlinedTextField(
             value = mRoomPrice,
             onValueChange = { mRoomPrice = it },
-            label = { Text(text = "Book Price *") },
+            label = { Text(text = "Room Price *") },
             colors = TextFieldDefaults.colors(
                 focusedTextColor = Color.Blue,
                 unfocusedTextColor = Color.Cyan,

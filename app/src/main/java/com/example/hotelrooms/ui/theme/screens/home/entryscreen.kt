@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.width
 import androidx.compose.material3.Button
@@ -29,6 +30,8 @@ import com.example.hotelrooms.R
 import com.example.hotelrooms.navigation.Route_login
 import com.example.hotelrooms.navigation.Route_register
 import com.example.hotelrooms.navigation.Route_view
+import com.example.hotelrooms.navigation.Route_view_client
+import com.example.hotelrooms.navigation.Route_view_rooms
 
 @Composable
 fun EntryScreen(navController: NavController){
@@ -48,15 +51,19 @@ fun EntryScreen(navController: NavController){
             Text(text = " Experience TRANQUILITY and PEACE", fontSize = 30.sp,
                 color = Color.Cyan, textAlign = TextAlign.Center, fontWeight = FontWeight.Bold)
             Spacer(modifier =Modifier.height(270.dp))
-            Text(text = "To continue, please;", fontSize = 25.sp, color = Color.White)
+            Text(text = "To continue;", fontSize = 25.sp, color = Color.White)
             Row {
                 Button(onClick = {navController.navigate(Route_register)}, colors = ButtonDefaults.buttonColors(Color.Blue)) {
-                    Text(text = "SIGN UP")
+                    Text(text = "ADMIN")
                 }
                 Spacer(modifier = Modifier.width(20.dp))
-                Button(onClick = {navController.navigate(Route_login)}, colors = ButtonDefaults.buttonColors(Color.Blue)) {
-                    Text(text = "SIGN IN")
-                }
+//                Button(onClick = {navController.navigate(Route_login)}, colors = ButtonDefaults.buttonColors(Color.Blue)) {
+//                    Text(text = "View Rooms")
+//                }
+            }
+            Spacer(modifier = Modifier.height(20.dp))
+            Button(onClick = {navController.navigate(Route_view_rooms)}, colors = ButtonDefaults.buttonColors(Color.Blue), modifier = Modifier.fillMaxWidth()) {
+                Text(text = "View Rooms")
             }
         }
     }
