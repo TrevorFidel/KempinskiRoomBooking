@@ -43,6 +43,7 @@ import androidx.navigation.NavController
 import androidx.navigation.NavHostController
 import com.example.hotelrooms.data.RoomViewModel
 import com.example.hotelrooms.models.Rooms
+import com.example.hotelrooms.navigation.Route_View_Rooms_User
 import com.example.hotelrooms.navigation.Route_home
 import com.example.hotelrooms.navigation.Route_view_rooms
 import com.google.firebase.database.DataSnapshot
@@ -317,7 +318,7 @@ fun ImageUploader(
             }
             Button(onClick = {
                 //-----------WRITE THE UPLOAD LOGIC HERE---------------//
-                navController.navigate(Route_view_rooms)
+                navController.navigate(Route_View_Rooms_User)
             },
             ) {
                 Text(text = "view uploads")

@@ -10,6 +10,7 @@ import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.snapshots.SnapshotStateList
 import androidx.navigation.NavHostController
 import com.example.hotelrooms.models.Rooms
+import com.example.hotelrooms.navigation.Route_View_Rooms_User
 import com.example.hotelrooms.navigation.Route_add_rooms
 import com.example.hotelrooms.navigation.Route_login
 import com.example.hotelrooms.navigation.Route_view_rooms
@@ -159,7 +160,7 @@ class RoomViewModel (
 
                     // Show success message
                     Toast.makeText(context, "Update successful", Toast.LENGTH_SHORT).show()
-                    navController.navigate(Route_view_rooms)
+                    navController.navigate(Route_View_Rooms_User)
                 } else {
                     // Handle database update error
                     Toast.makeText(context, "ERROR: ${task.exception?.message}", Toast.LENGTH_SHORT)
@@ -185,7 +186,7 @@ class RoomViewModel (
                         if (task.isSuccessful) {
                             // Show success message
                             Toast.makeText(context, "Update successful", Toast.LENGTH_SHORT).show()
-                            navController.navigate(Route_view_rooms)
+                            navController.navigate(Route_View_Rooms_User)
                         } else {
                             // Handle database update error
                             Toast.makeText(context, "ERROR: ${task.exception?.message}", Toast.LENGTH_SHORT).show()
